@@ -1,4 +1,4 @@
-<!DOCTYPE html>     
+<!DOCTYPE html>    
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,10 +12,18 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
-            background: transparent; /* removed background */
         }
 
-        /* 🔒 CENTER CONTAINER */
+        body {
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.6),
+                rgba(255, 255, 255, 0)
+            ),
+            #0d65b2;
+        }
+
+        /* 🔒 CENTER LAYOUT PROPERLY */
         .flyer-container {
             position: fixed;
             inset: 0;
@@ -24,30 +32,24 @@
             align-items: center;
         }
 
-        /* ✅ RESPONSIVE FLYER WRAPPER */
-        .flyer-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Flyer image fits entire screen while preserving aspect ratio */
+        /* ✅ RESPONSIVE FLYER IMAGE (NO STRETCHING) */
         .flyer {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* ensures full flyer visible */
-            display: block;
+            max-width: 100%;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
             pointer-events: none;
         }
 
-        /* ✅ SOCIAL ICONS OVERLAY (RELATIVE TO FLYER AREA) */
+        /* ✅ SOCIAL ICONS */
         .socials {
             position: absolute;
-            bottom: 8%;
+            bottom: 2%;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 4%;
+            gap: 2vw;
         }
 
         .socials a {
@@ -55,9 +57,8 @@
             display: inline-block;
         }
 
-        /* ✅ RESPONSIVE ICON SIZE */
         .socials img {
-            width: clamp(40px, 5vw, 80px);
+            width: clamp(40px, 6vw, 90px);
             height: auto;
             transition: transform 0.2s ease, box-shadow 0.3s ease;
             transform-origin: center;
@@ -94,11 +95,39 @@
             opacity: 1;
         }
 
-        /* 📱 MOBILE ADJUSTMENTS */
+        /* 📱 MOBILE TWEAK */
         @media (max-width: 600px) {
             .socials {
-                bottom: 10%;
-                gap: 3%;
+                bottom: 4%;
+                gap: 3vw;
+            }
+
+            .socials img {
+                width: clamp(35px, 8vw, 60px);
+            }
+        }
+
+        /* 📲 TABLETS */
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .socials {
+                bottom: 3%;
+                gap: 1.5vw;
+            }
+
+            .socials img {
+                width: clamp(50px, 5vw, 80px);
+            }
+        }
+
+        /* 💻 LARGE SCREENS */
+        @media (min-width: 1025px) {
+            .socials {
+                bottom: 2%;
+                gap: 1vw;
+            }
+
+            .socials img {
+                width: clamp(60px, 4vw, 90px);
             }
         }
     </style>
@@ -106,13 +135,9 @@
 
 <body>
 
-<div class="flyer-container">
-
-    <div class="flyer-wrapper">
-
+    <div class="flyer-container">
         <img class="flyer" src="assets/images/FlyerTest.jpg" alt="flyer">
 
-        <!-- SOCIAL ICONS OVERLAY -->
         <div class="socials">
             <a href="https://www.instagram.com/showhouse.insta/" target="_blank" data-name="Instagram">
                 <img src="assets/images/insta.png" alt="instagram">
@@ -122,10 +147,7 @@
                 <img src="assets/images/facebook.png" alt="Facebook">
             </a>
         </div>
-
     </div>
-
-</div>
 
 </body>
 </html>
