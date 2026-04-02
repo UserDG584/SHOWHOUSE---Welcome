@@ -9,27 +9,22 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    overflow: hidden;
 }
 
-/* No background at all */
+/* Allow scrolling */
 body {
-    background: transparent;
+    overflow-y: auto;
 }
 
-/* Fullscreen flyer */
+/* Container allows natural height */
 .flyer-container {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
 }
 
+/* Image scales to screen width and grows in height */
 .flyer {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: auto;
     display: block;
 }
 </style>
