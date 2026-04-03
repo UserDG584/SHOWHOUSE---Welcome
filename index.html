@@ -3,60 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flyer</title>
+    <title>Scrollable Flyer</title>
 
     <style>
         html, body {
             margin: 0;
             padding: 0;
-            height: 100%;
-        }
-
-        body {
             background: linear-gradient(
                 to bottom,
                 rgba(255, 255, 255, 0.6),
                 rgba(255, 255, 255, 0)
-            ), #0d65b2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            ),
+            #0d65b2;
         }
 
-        /* CONTAINER */
-        .flyer-container {
+        /* each scroll page */
+        .page {
+            height: 100vh;
             position: relative;
-            width: 100%;
-            max-width: 900px; /* keeps flyer readable on large screens */
-            aspect-ratio: 9 / 16; /* adjust to match your flyer image */
         }
 
-        /* FLYER IMAGE */
-        .flyer {
+        body {
+            
+        }
+
+        /* FLYER CONTAINER (no longer fixed) */
+        .flyer-container {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            display: block;
+            position: relative;
         }
 
-        /* SOCIAL ICONS */
+        .flyer {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
         .socials {
             position: absolute;
-            bottom: 3%;
+            bottom: 2%;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: clamp(10px, 4vw, 40px);
+            gap: 60px;
         }
 
         .socials a {
             position: relative;
+            display: inline-block;
         }
 
         .socials img {
-            width: clamp(40px, 10vw, 90px);
-            height: auto;
+            width: 8vw;
+            max-width: 625px;
+            min-width: 150px;
             transition: transform 0.2s ease, box-shadow 0.3s ease;
+            transform-origin: center;
         }
 
         .socials a:hover img {
@@ -67,7 +79,6 @@
                 0 0 15px rgba(0, 123, 255, 0.4);
         }
 
-        /* TOOLTIP */
         .socials a::after {
             content: attr(data-name);
             position: absolute;
@@ -88,35 +99,31 @@
         .socials a:hover::after {
             opacity: 1;
         }
-
-        /* MOBILE TWEAKS */
-        @media (max-width: 480px) {
-            .flyer-container {
-                max-width: 100%;
-            }
-
-            .socials {
-                bottom: 2%;
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <div class="flyer-container">
-        <img class="flyer" src="assets/images/FlyerTest.jpg" alt="flyer">
+    <!-- PAGE 1: FLYER -->
+    <div class="page">
+        <div class="flyer-container">
+            <img class="flyer" src="assets/images/FlyerTest.jpg" alt="flyer">
 
-        <div class="socials">
-            <a href="https://www.instagram.com/showhouse.insta/" target="_blank" data-name="Instagram">
-                <img src="assets/images/insta.png" alt="instagram">
-            </a>
+            <div class="socials">
+                <a href="https://www.instagram.com/showhouse.insta/" target="_blank" data-name="Instagram">
+                    <img src="assets/images/insta.png" alt="instagram">
+                </a>
 
-            <a href="https://www.facebook.com/profile.php?id=61578683642159" target="_blank" data-name="Facebook">
-                <img src="assets/images/facebook.png" alt="Facebook">
-            </a>
+                <a href="https://www.facebook.com/profile.php?id=61578683642159" target="_blank" data-name="Facebook">
+                    <img src="assets/images/facebook.png" alt="Facebook">
+                </a>
+            </div>
         </div>
     </div>
+
+    <!-- EXTRA BLANK SCROLL PAGES -->
+    <div class="page"></div>
+    <div class="page"></div>
 
 </body>
 </html>
